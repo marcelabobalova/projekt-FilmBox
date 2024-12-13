@@ -103,4 +103,77 @@ const filmy = [
 			'Na zámek v podhůří Krkonoš přijíždí jeho nový majitel Štěpán se svojí snoubenkou, krásnou komtesou Blankou, a mladším bratrem Adamem. Cestou kočár nešťastně srazí kolemjdoucí dívku, Adam jí pomůže a ona se do něj zamiluje. Na zámku Adam objeví starou vlašskou knihu, která by měla obsahovat cestu k pokladům. Tajemné značky vlašské knihy však nedokáže vyluštit ani národopisec Jiráček, který v kraji sbírá pověsti a nevychází z údivu nad tím, že zdejší lidé stále věří v Krakonoše. Na zámku se objeví záhadný cizinec a nabídne Štěpánovi, že jej k pokladu za určitých podmínek dovede. Výprava do hor může začít. Naplní se Liduščina láska k Adamovi? Jakou záhadu skrývá starý obraz na zámku Hůrka a co strašlivého se v horách kdysi odehrálo? A kdo je vlastně Krakonoš a jaké je jeho největší tajemství? (csfd.cz, Česká televize)',
 		premiera: '2022-12-24',
 	},
+	{
+		id: 'musime-si-pomahat',
+		nazev: 'Musíme si pomáhat',
+		plakat: {
+			url: 'https://image.pmgstatic.com/cache/resized/w663/files/images/film/posters/165/050/165050136_9b1ea5.jpg',
+			sirka: 420,
+			vyska: 592,
+		},
+		ochutnavka: 'Český film z období druhé světové války.',
+		popis:
+			'Velmi úspěšná okupační komedie je dalším společným dílem autorské dvojice scenáristy Petra Jarchovského a režiséra Jana Hřebejka. Tvůrci se dívají na tragické období českých dějin s odstupem, s komediální nadsázkou i s porozuměním pro lidskou slabost. V místy až překvapivě napínavém příběhu vycházejí ze skutečných epizod, jež se odehrály během protektorátu. Smutným hrdinou vyprávění je maloměstský penzionovaný úředník Josef Čížek, který pod tlakem okolností schová ve svém bytě mladého židovského uprchlíka. Situaci mu značně komplikuje zejména čechoněmecký kolaborant Prohaska, který nadbíhá jeho půvabné ženě Marii. Určitou smířlivostí k různým typům postojů českých lidí vůči okupantům, jež je ostatně naznačena již názvem, vyvolal snímek polemiku. Ta však byla zcela zastíněna obrovským diváckým ohlasem i řadou cen z domácích i zahraničních filmových akcí. Film získal mj. pět Českých lvů a Cenu české filmové kritiky a byl nominován na Oscara v kategorii cizojazyčných filmů. (oficiální text distributora) ',
+		premiera: '2000-03-15',
+	},
 ]
+
+
+/*4
+
+Na stránce se seznamem filmů vypište karty se všemi filmy z pole filmy.
+
+	Přejděte v prohlížeči na stránku se seznamem.
+
+	Na konci souboru seznam.js pomocí document.querySelector vyhledejte prvek s id seznam-filmu.
+
+	Vymažte tomuto prvku jeho vnitřní HTML, aby byl prázdný.
+
+	Pomocí cyklu projděte všechny filmy z předpřipraveného pole a pro každý přidejte do prvku #seznam-filmu následující HTML doplněné o patřičné informace (název, ochutnávku, plakát).
+*/
+
+/*<div class="col">
+   <div class="card">
+	  <img
+		 src="https://via.placeholder.com/780x520?text=Plak%C3%A1t"
+		 width="780"
+		 height="520"
+		 class="card-img-top"
+		 alt="plakát"
+	  />
+	  <div class="card-body">
+		 <h5 class="card-title">Název filmu</h5>
+		 <p class="card-text">Krátký popisek filmu.</p>
+		 <a href="film.html" class="btn btn-primary">Přehrát</a>
+	  </div>
+   </div>
+</div>*/
+
+const seznamFilmu = document.querySelector('#seznam-filmu') //Na konci souboru seznam.js pomocí document.querySelector vyhledejte prvek s id seznam-filmu.
+seznamFilmu.innerHTML = "" // Vymažte tomuto prvku jeho vnitřní HTML, aby byl prázdný.
+
+
+filmy.forEach(film => {
+	const seznamFilmy = `
+	<div class="col">
+	<div class="card">
+		<img src="${film.plakat.url}" alt="plakát ${film.nazev}" class="card-img-top">
+		<div class="card-body">
+			<h5 class="card-title">${film.nazev}</h5>
+			<p class="card-text">${film.ochutnavka}</p>
+			<a href="film.html#${id}" class="btn btn-primary">Přehrát</a>
+		</div>
+	</div>
+</div>
+	`;
+	seznamFilmu.innerHTML += seznamFilmy;
+});
+
+//Změna velikosti obrázků
+const obrazky = document.querySelectorAll('.card-img-top'); // Vrací NodeList všech obrázků
+
+// Projděte všechny obrázky a upravte jejich šířku a výšku
+obrazky.forEach(filmPlakat => {
+	filmPlakat.style.width = '420px'; // Nastaví šířku obrázku
+	filmPlakat.style.height = '592px'; // Nastaví výšku obrázku
+});
