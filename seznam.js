@@ -153,7 +153,7 @@ const seznamFilmu = document.querySelector('#seznam-filmu') //Na konci souboru s
 seznamFilmu.innerHTML = "" // Vymažte tomuto prvku jeho vnitřní HTML, aby byl prázdný.
 
 
-filmy.forEach(film => {
+filmy.forEach(film => { //5/2.V souboru seznam.js v HTML kódu z předchozího úkolu (který zobrazuje jeden film v seznamu) přidejte do odkazu href za film.html znak mřížky (#) a za něj ještě unikátní identifikátor (id), který má každý film jiný. 
 	const seznamFilmy = `
 	<div class="col">
 	<div class="card">
@@ -161,8 +161,8 @@ filmy.forEach(film => {
 		<div class="card-body">
 			<h5 class="card-title">${film.nazev}</h5>
 			<p class="card-text">${film.ochutnavka}</p>
-			<a href="film.html#${id}" class="btn btn-primary">Přehrát</a>
-		</div>
+			<a href="film.html#${film.id}" class="btn btn-primary">Přehrát</a> 
+		</div> 
 	</div>
 </div>
 	`;
@@ -170,10 +170,11 @@ filmy.forEach(film => {
 });
 
 //Změna velikosti obrázků
-const obrazky = document.querySelectorAll('.card-img-top'); // Vrací NodeList všech obrázků
+const obrazky = document.querySelectorAll('.card-img-top')
 
-// Projděte všechny obrázky a upravte jejich šířku a výšku
 obrazky.forEach(filmPlakat => {
 	filmPlakat.style.width = '420px'; // Nastaví šířku obrázku
 	filmPlakat.style.height = '592px'; // Nastaví výšku obrázku
 });
+
+const detailFilmu = document.querySelector('#detail-filmu')

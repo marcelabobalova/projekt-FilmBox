@@ -103,4 +103,133 @@ const filmy = [
 			'Na zámek v podhůří Krkonoš přijíždí jeho nový majitel Štěpán se svojí snoubenkou, krásnou komtesou Blankou, a mladším bratrem Adamem. Cestou kočár nešťastně srazí kolemjdoucí dívku, Adam jí pomůže a ona se do něj zamiluje. Na zámku Adam objeví starou vlašskou knihu, která by měla obsahovat cestu k pokladům. Tajemné značky vlašské knihy však nedokáže vyluštit ani národopisec Jiráček, který v kraji sbírá pověsti a nevychází z údivu nad tím, že zdejší lidé stále věří v Krakonoše. Na zámku se objeví záhadný cizinec a nabídne Štěpánovi, že jej k pokladu za určitých podmínek dovede. Výprava do hor může začít. Naplní se Liduščina láska k Adamovi? Jakou záhadu skrývá starý obraz na zámku Hůrka a co strašlivého se v horách kdysi odehrálo? A kdo je vlastně Krakonoš a jaké je jeho největší tajemství? (csfd.cz, Česká televize)',
 		premiera: '2022-12-24',
 	},
+	{
+		id: 'musime-si-pomahat',
+		nazev: 'Musíme si pomáhat',
+		plakat: {
+			url: 'https://image.pmgstatic.com/cache/resized/w663/files/images/film/posters/165/050/165050136_9b1ea5.jpg',
+			sirka: 420,
+			vyska: 592,
+		},
+		ochutnavka: 'Český film z období druhé světové války.',
+		popis:
+		'Velmi úspěšná okupační komedie je dalším společným dílem autorské dvojice scenáristy Petra Jarchovského a režiséra Jana Hřebejka. Tvůrci se dívají na tragické období českých dějin s odstupem, s komediální nadsázkou i s porozuměním pro lidskou slabost. V místy až překvapivě napínavém příběhu vycházejí ze skutečných epizod, jež se odehrály během protektorátu. Smutným hrdinou vyprávění je maloměstský penzionovaný úředník Josef Čížek, který pod tlakem okolností schová ve svém bytě mladého židovského uprchlíka. Situaci mu značně komplikuje zejména čechoněmecký kolaborant Prohaska, který nadbíhá jeho půvabné ženě Marii. Určitou smířlivostí k různým typům postojů českých lidí vůči okupantům, jež je ostatně naznačena již názvem, vyvolal snímek polemiku. Ta však byla zcela zastíněna obrovským diváckým ohlasem i řadou cen z domácích i zahraničních filmových akcí.Film získal mj. pět Českých lvů a Cenu české filmové kritiky a byl nominován na Oscara v kategorii cizojazyčných filmů. (oficiální text distributora)',
+		premiera: '2000-03-15',
+	},
 ]
+
+//5/3 V souboru film.js zjistěte, na film s jakým id se uživatel chce dívat – zjistíte to z property location.hash. Všimněte si, že hodnota vlastnosti hash začíná znakem mřížky (#). Id v poli filmy mřížkou nezačínají. Mřížku vhodnou metodou na řetězcích odřízněte. Mřížka není potřeba, je spíš na škodu.
+
+//5/4 Cyklem prohledejte pole filmy a film s id stejným jako hash (bez mřížky) si poznamenejte do proměnné. (Případně můžete také použít funkci find na poli.)
+
+//5/5 Vepište informace (název, popis, plakát) o nalezeném filmu do stránky. Upravte textový obsah a atributy příslušných potomků prvku #detail-filmu. Do .card-text vepište dlouhý popis filmu.
+
+const detailFilmu = document.querySelector('#detail-filmu')
+const filmId = location.hash.slice(1);
+const filmDetail = filmy.find((film) => film.id === filmId)
+
+document.title = filmDetail.nazev;
+
+detailFilmu.innerHTML = `
+<div class="row g-0">
+	<div class="col-md-5">
+  		<img src="${filmDetail.plakat.url}" alt="plakát ${filmDetail.nazev}" class="img-fluid rounded-start">
+  	</div>
+	<div class="col-md-7">
+  		<div class="card-body">
+			<h5 class="card-title">${filmDetail.nazev}</h5>
+			<p class="card-text">${filmDetail.popis}</p>
+			<p class="card-text">
+			<small class="text-muted" id="premiera">Premiéra <strong>24. prosince 2022</strong>, což je za 24 dní.</small>
+			</p>
+			<h6>Hodnocení</h6>
+			<div class="stars">
+				<button class="far fa-star button-star" data-mdb-toggle="tooltip" data-mdb-original-title="Nic moc">
+				1
+				</button>
+				<button class="far fa-star button-star" data-mdb-toggle="tooltip" data-mdb-original-title="Ucházející">
+				2
+				</button>
+				<button class="far fa-star button-star" data-mdb-toggle="tooltip" data-mdb-original-title="Dobrý">
+				3
+				</button>
+				<button class="far fa-star button-star" data-mdb-toggle="tooltip" data-mdb-original-title="Skvělý">
+				4
+				</button>
+				<button class="far fa-star button-star" data-mdb-toggle="tooltip" data-mdb-original-title="Úžasný">
+				5
+				</button>
+			</div>
+			<h6 class="mt-4">Poznámka</h6>
+			<form id="note-form">
+				<div class="row">
+					<div class="col-md-6 col-lg-7 col-xl-8 mb-2">
+						<div class="form-outline">
+						<textarea class="form-control" id="message-input" rows="4"></textarea>
+						<label class="form-label" for="message-input" style="margin-left: 0px;">Text poznámky</label>
+						<div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 93.6px;"></div><div class="form-notch-trailing"></div></div></div>
+					</div>
+					<div class="col-md-6 col-lg-5 col-xl-4">
+						<div class="form-check d-flex justify-content-center mb-2">
+							<input class="form-check-input me-2 mb-2" type="checkbox" value="" id="terms-checkbox">
+							<label class="form-check-label" for="terms-checkbox">Souhlasím se všeobecnými podmínky užívání.</label>
+						</div>
+						<button type="submit" class="btn btn-primary btn-block">Uložit</button>
+					</div>
+				</div>
+			</form>
+		</div>
+  	</div>
+</div>
+`;
+
+	/*8 Umožněte uživateli vyplněním formuláře přidat k filmu vlastní poznámku.
+
+   	8/1 V souboru film.js pomocí document.querySelector najděte prvek s id note-form.
+
+   	8/2 Při pokusu o odeslání tohoto formuláře zamezte výchozí chování prohlížeče.
+
+    8/3 Ověřte, že uživatel do textového pole, prvku s id message-input něco napsal. Pokud ne, přidejte prvku třídu is-invalid, která ho zvýrazní červeně.
+
+    8/4 Pokud uživatel něco napsal, ověřte, že souhlasil s podmínkami, že zaškrtl políčko s id terms-checkbox. Pokud nezaškrtl, přidejte políčku třídu is-invalid
+
+    8/5 Pokud uživatel splnil obě podmínky z kroků výše, nahraďte HTML obsah formuláře za odstavec <p class="card-text">…</p> s textem z textového pole.
+
+	8/bonus Pokud uživatel něco ve formuláři vynechal, pomozte mu zaměřením příslušného formulářového prvku.
+
+    V místech, kde přidáváte třídu is-invalid, volejte také na formulářovém prvku metodu .focus(). Ta například u textového pole přenese kurzor pro psaní rovnou na správné místo, aby uživatel mohl začít psát z klávesnice.
+
+*/
+	const formELM = document.querySelector('#note-form');
+    const messageInput = document.querySelector('#message-input');
+    const termsCheckbox = document.querySelector('#terms-checkbox');
+
+    formELM.addEventListener('submit', (event) => {
+      event.preventDefault(); // Zamezení výchozího chování formuláře
+
+      let isValid = true;
+
+      // Kontrola textového pole
+      if (!messageInput.value.trim()) {
+        messageInput.classList.add('is-invalid');
+        messageInput.focus();
+        isValid = false;
+      } else {
+        messageInput.classList.remove('is-invalid');
+      }
+
+      // Kontrola zaškrtnutí checkboxu
+      if (!termsCheckbox.checked) {
+        termsCheckbox.classList.add('is-invalid');
+        if (isValid) termsCheckbox.focus();
+        isValid = false;
+      } else {
+        termsCheckbox.classList.remove('is-invalid');
+      }
+
+      // Pokud jsou obě podmínky splněny
+      if (isValid) {
+        formELM.innerHTML = `<p class="card-text">${messageInput.value}</p>`;
+      }
+    });
+	  
