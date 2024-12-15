@@ -15,14 +15,11 @@ Změňte ikonku tlačítka na křížek, pokud je menu rozbalené a na hamburger
     HTML ikonky křížku: <i class="fas fa-xmark"></i>
     HTML ikonky hamburgeru: <i class="fas fa-bars"></i>*/
 
-document.addEventListener('click', function () {
-    const menuTlacitko = document.querySelector('#menu-tlacitko');
-    const menuPolozky = document.querySelector('#menu-polozky');
+const menuTlacitko = document.querySelector('#menu-tlacitko');
+const menuPolozky = document.querySelector('#menu-polozky');
+const ikona = menuTlacitko.querySelector('i');
 
-    menuTlacitko.addEventListener('click', function () {
-        menuPolozky.classList.toggle('show');
-        menuTlacitko.innerHTML = menuPolozky.classList.contains('show')
-            ? '<i class="fas fa-xmark"></i>'
-            : '<i class="fas fa-bars"></i>';
-    });
+menuTlacitko.addEventListener('click', () => {
+    const menu = menuPolozky.classList.toggle('show');
+    ikona.className = menu ? 'fas fa-xmark' : 'fas fa-bars';
 });
